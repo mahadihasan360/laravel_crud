@@ -30,6 +30,27 @@ class studentcontroller extends Controller
      */
     public function store(Request $request){
 
+        $this -> validate($request,[
+            "name"    => ["required"],
+            "email"    => ["required","unique:students","email"],
+            "cell"    => ["required","unique:students","numeric","starts_with:01,+8801"],
+            "uname"    => ["required","unique:students","min:5"],
+        ],[
+            "name.required"    => "নামের ঘর খালি রাখা যাবে না",
+            "email.required"   => "ইমেইল এর ঘর খালি রাখা যাবে না",
+            "email.unique"     => "এই ইমেইল দিয়ে ইতিমধ্যে সাইনআপ করা হয়ে গেছে",
+            "email.email"      => "সঠিক ইমেইল ব্যাবহার করুন",
+            "cell.required"    => "ফোন নাম্বারের ঘরটি খালি রাখা যাবে না",
+            "cell.numeric"     => "ফোন নাম্বারটি অবশ্যই সঠিক হতে হবে",
+            "cell.starts_with" => "ফোন নাম্বারটি অবশ্যই ০১/+৮৮০১ দিয়ে শুরু করতে হবে",
+            "uname.required"   => "ইউজার নামের ঘর খালি রাখা যাবে না",
+            "uname.unique"     => "এই ইউজার নেম দিয়ে ইতিমধ্যে সাইনআপ করা হয়ে গেছে",
+            "uname.min"        => "ইউজার নেম কমপক্ষে ৫ অক্ষরের হতে হবে",
+        ]);
+
+
+
+
         $unique_name = "";
 
         if($request -> hasFile("photo")){

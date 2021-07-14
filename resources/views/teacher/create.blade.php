@@ -9,6 +9,9 @@
 				@if (Session::has("success"))
 					<p class="alert alert-success">{{ Session::get("success") }} <button class="close" data-dismiss="alert">&times;</button></p>
 				@endif
+				@if ($errors -> any())
+				<p class="alert alert-success">{{ $errors -> first() }} <button class="close" data-dismiss="alert">&times;</button></p>
+				@endif
 				<form action="{{ route("teacher.store") }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
