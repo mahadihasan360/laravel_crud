@@ -2,8 +2,8 @@
 
 	<div class="wrap-table">
 		<a class="btn btn-primary btn-sm" href="{{ route('student.create') }}">Add New Student</a>
-		<a class="btn btn-primary btn-sm" href="{{ route('teacher.create') }}">Add New Teacher</a>
-		<a class="btn btn-primary btn-sm" href="{{ route('teacher.index') }}">View All Teachers</a>
+		<a class="btn btn-success btn-sm" href="{{ route('teacher.index') }}">View All Teachers</a>
+		<a class="btn btn-info btn-sm" href="{{ route('staff.index') }}">View All Staff</a>
 		<br>
 		<br>
 		<div class="card">
