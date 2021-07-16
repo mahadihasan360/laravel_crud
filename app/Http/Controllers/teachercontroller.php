@@ -95,16 +95,26 @@ class teachercontroller extends Controller
     }
 
     /**
-     * 
+     * Update teacher
      */
     public function update(Request $request,$id){
         $update_data = Teacher::find($id);
+
+        $unique_name = $update_data -> photo;
+
+        if($request -> hasFile("photo")){
+            unlink("media/teachers/" . $unique_name);
+            $img = $request -> file("photo");
+            $unique_name = md5(time().rand()) . "." . $img -> getClientOriginalExtension();
+            $img -> move(public_path("media/teachers") , $unique_name);
+        }
 
         $update_data -> name = $request -> name;
         $update_data -> email = $request -> email;
         $update_data -> cell = $request -> cell;
         $update_data -> uname = $request -> uname;
         $update_data -> subject = $request -> subject;
+        $update_data -> photo = $unique_name;
 
         $update_data -> update();
         return back() -> with("success","Data Updated Successful");
@@ -117,6 +127,8 @@ class teachercontroller extends Controller
     public function destroy($id){
 
         $data = Teacher::find($id);
+        $unique_name = $data -> photo;
+        unlink("media/teachers/" . $unique_name);
         $data -> delete();
         return back() -> with("success","Data Deleted Successful");
 

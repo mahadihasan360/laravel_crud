@@ -1,9 +1,11 @@
   @include('layouts.header')
 
 	<div class="wrap-table">
-		<a class="btn btn-primary btn-sm" href="{{ route('student.create') }}">Add New Student</a>
-		<a class="btn btn-success btn-sm" href="{{ route('teacher.index') }}">View All Teachers</a>
-		<a class="btn btn-info btn-sm" href="{{ route('staff.index') }}">View All Staff</a>
+		<a style="margin-right: 20px" class="btn btn-primary btn-sm" href="{{ route('student.create') }}">Add New Student</a>
+		<a style="margin-right: 20px" class="btn btn-success btn-sm" href="{{ route('teacher.index') }}">View All Teachers</a>
+		<a style="margin-right: 20px" class="btn btn-info btn-sm" href="{{ route('staff.index') }}">View All Staff</a>
+		<a class="btn btn-danger btn-sm" href="{{ route('guardian.index') }}">View All Guardian</a>
+		
 		<br>
 		<br>
 		<div class="card">

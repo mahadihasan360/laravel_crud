@@ -32,6 +32,11 @@
 						<input name="subject" class="form-control" value="{{ $edit_teacher -> subject }}" type="text">
 					</div>
 					<div class="form-group">
+						<label for="">Photo</label>
+						<input name="photo" type="file"><br>
+						<img style="width:300px;height:300px" src="{{ url("") }}/media/teachers/{{ $edit_teacher -> photo }}" alt="">
+					</div>
+					<div class="form-group">
 						<input class="btn btn-primary" type="submit" value="Update">
 					</div>
 				</form>

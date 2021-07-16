@@ -49,6 +49,8 @@ class staffcontroller extends Controller
             "uname.min"        => "ইউজার নেম কমপক্ষে ৫ অক্ষরের হতে হবে",
         ]);
 
+        $unique_name = "";
+
         if($request -> hasFile("photo")){
 
             $img = $request -> file("photo");
@@ -100,10 +102,23 @@ class staffcontroller extends Controller
     public function update(Request $request,$id){
         $update_data = Staff::find($id);
 
+        $unique_name = $update_data -> photo;
+
+        if($request -> hasFile("photo")){
+
+            unlink("media/staff/" . $unique_name);
+
+            $img = $request -> file("photo");
+            $unique_name = md5(time().rand()) . "." . $img -> getClientOriginalExtension();
+            $img -> move(public_path("media/staff/"),$unique_name);
+
+        }
+
         $update_data -> name  = $request -> name;
         $update_data -> email  = $request -> email;
         $update_data -> cell  = $request -> cell;
         $update_data -> uname  = $request -> uname;
+        $update_data -> photo  = $unique_name;
 
         $update_data -> update();
 
@@ -111,11 +126,15 @@ class staffcontroller extends Controller
     }
 
     /**
-     * 
+     * Delete staff
      */
     public function destroy($id){
 
         $destroy_data = Staff::find($id);
+
+        $unique_name = $destroy_data-> photo;
+        unlink("media/staff/" . $unique_name);
+
         $destroy_data -> delete();
         return back() -> with("success", $destroy_data -> name . " Your Data Deleted Successful");
     }

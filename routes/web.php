@@ -37,3 +37,14 @@ Route::post("/student/update/{id}",[App\Http\Controllers\studentcontroller::clas
   Route::get("/staff/edit/{id}",[App\Http\Controllers\staffcontroller::class,"edit"]) -> name("staff.edit");
   Route::post("/staff/update/{id}",[App\Http\Controllers\staffcontroller::class,"update"]) -> name("staff.update");
   Route::get("/staff/destroy/{id}",[App\Http\Controllers\staffcontroller::class,"destroy"]) -> name("staff.destroy");
+
+  /**
+   * For Guardian
+   */
+
+   Route::get("/guardian",[App\Http\Controllers\guardiancontroller::class,"index"]) -> name("guardian.index");
+   Route::get("/guardian/create",[App\Http\Controllers\guardiancontroller::class,"create"]) -> name("guardian.create");
+   Route::post("/guardian/store",[App\Http\Controllers\guardiancontroller::class,"store"]) -> name("guardian.store");
+   Route::get("/guardian/destroy/{id}",[App\Http\Controllers\guardiancontroller::class,"destroy"]) -> name("guardian.destroy");
+
+  

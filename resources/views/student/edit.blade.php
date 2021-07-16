@@ -29,6 +29,11 @@
 					<input name="uname" class="form-control" value="{{ $edit_data -> uname }}" type="text">
 				</div>
 				<div class="form-group">
+					<label for="">Photo</label>
+					<input name="photo" type="file"><br>
+					<img style="width:300px;height:300px" src="{{ url('') }}/media/students/{{ $edit_data -> photo }}" alt="">
+				</div>
+				<div class="form-group">
 					<input class="btn btn-primary" type="submit" value="Update">
 				</div>
 			</form>
