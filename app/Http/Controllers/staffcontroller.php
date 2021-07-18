@@ -133,7 +133,9 @@ class staffcontroller extends Controller
         $destroy_data = Staff::find($id);
 
         $unique_name = $destroy_data-> photo;
-        unlink("media/staff/" . $unique_name);
+        if(file_exists($unique_name)){
+            unlink("media/staff/" . $unique_name);
+        }
 
         $destroy_data -> delete();
         return back() -> with("success", $destroy_data -> name . " Your Data Deleted Successful");

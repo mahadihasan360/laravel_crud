@@ -128,7 +128,9 @@ class teachercontroller extends Controller
 
         $data = Teacher::find($id);
         $unique_name = $data -> photo;
-        unlink("media/teachers/" . $unique_name);
+        if(file_exists($unique_name)){
+            unlink("media/teachers/" . $unique_name);
+        }
         $data -> delete();
         return back() -> with("success","Data Deleted Successful");
 

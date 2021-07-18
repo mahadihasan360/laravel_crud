@@ -132,7 +132,9 @@ class studentcontroller extends Controller
     public function destroy($id){
         $delete_data = Student::find($id);
         $unique_name = $delete_data -> photo;
-        unlink("media/students/" . $unique_name);
+        if(file_exists($unique_name)){
+            unlink("media/students/" . $unique_name);
+        }
         $delete_data -> delete();
         return back() -> with("success","Student Data Deleted Successful" );
     }

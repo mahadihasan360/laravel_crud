@@ -55,12 +55,14 @@ class guardiancontroller extends Controller
     }
 
     /**
-     * Create guardian
+     * Destroy guardian
      */
     public function destroy($id){
         $destroy_data = Guardian::find($id);
         $unique_name = $destroy_data -> photo;
-        unlink("media/guardians/".$unique_name);
+        if(file_exists($unique_name)){
+            unlink("media/guardians/".$unique_name);
+        }
         $destroy_data -> delete();
         return back() -> with("success","Data Deleted Successful!");
     }
